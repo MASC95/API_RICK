@@ -1,7 +1,21 @@
-import React from "react"; 
+import axios from "axios";
+import React, { useEffect,useState } from "react";
 import { Cards } from "./CARDS/Cards";
+import { endpoints } from "./ENDPOINTS/endpoints";
 
 export const Navbar = () => {
+useEffect(()=>{
+  const fetch=async()=>{
+    try {
+      const character=await axios.get(endpoints.getCharacter)
+      console.log(character.data.results)
+    } catch (error) {
+      alert(error)
+    }
+  }
+  fetch()
+},[])
+
   return (
     <div>
       <nav class="navbar navbar-dark bg-dark">
