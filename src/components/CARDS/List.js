@@ -1,6 +1,6 @@
-export const Cards = () => {
-  return (
-    <div className="card m-5" style={{width: "18rem"}}>
+export const List = () =>{
+    return(
+      <div className="card m-5" style={{width: "18rem"}}>
       <img
         src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp"
         className="card-img-top"
@@ -22,5 +22,10 @@ export const Cards = () => {
        
       </div>
     </div>
-  );
-};
+        
+   
+    
+    //2da card
+    //3ra card
+    )
+}

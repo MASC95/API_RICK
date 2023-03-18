@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { Cards } from "./CARDS/Cards";
 import { endpoints } from "./ENDPOINTS/endpoints";
+import {List} from './CARDS/List'
 
 export const Navbar = () => {
 useEffect(()=>{
@@ -37,11 +38,12 @@ useEffect(()=>{
 <div class="container-fluid">
   <div className="row">
     <div className="col-4">
-        <h1>CONTENIDO DE CARDS</h1> 
+        <h1>PERSONAJE</h1> 
         <Cards/>
     </div>
     <div className="col-8">
-        <h1>LISTA DE CARDS</h1>
+    <h1>CONTENIDO DE PERSONAJES</h1> 
+    <List/>
     </div>
 
   </div>
