@@ -2,48 +2,69 @@ import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { Cards } from "./CARDS/Cards";
 import { endpoints } from "./ENDPOINTS/endpoints";
-import {List} from './CARDS/List'
+/*import {List} from './CARDS/List'*/
 
 export const Navbar = () => {
+const [characterList, setCharacterList] = useState([])
+const [characterIdsName,setCharacterIdsName ] = useState()
 useEffect(()=>{
+
+
+    
   const fetch=async()=>{
     try {
-      const character=await axios.get(endpoints.getCharacter)
-      console.log(character.data.results)
+      const characters = await axios.get(endpoints.getCharacter)
+      console.log(characters.data.results)
+      setCharacterList(characters.data.results);
     } catch (error) {
       alert(error)
     }
   }
   fetch()
-},[])
-
+},[]) 
+const onCharacterClick = (characterId) =>{
+ /*console.log(characterId)*/
+ setCharacterIdsName(characterId);
+}
+console.log(characterIdsName)
   return (
     <div>
-      <nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <form class="d-flex input-group w-auto">
+      <nav className="navbar navbar-dark bg-dark">
+  <div className="container-fluid">
+    <form className="d-flex input-group w-auto">
       <input
         type="search"
-        class="form-control rounded"
+        className="form-control rounded"
         placeholder="Search"
         aria-label="Search"
         aria-describedby="search-addon"
       />
-      <span class="input-group-text text-white border-0" id="search-addon">
-        <i class="fas fa-search"></i>
+      <span className="input-group-text text-white border-0" id="search-addon">
+        <i className="fas fa-search"></i>
       </span>
     </form>
   </div>
 </nav>
-<div class="container-fluid">
+<div className="container-fluid">
   <div className="row">
     <div className="col-4">
         <h1>PERSONAJE</h1> 
+        {characterIdsName}
         <Cards/>
     </div>
     <div className="col-8">
     <h1>CONTENIDO DE PERSONAJES</h1> 
-    <List/>
+   
+    {/* <List/> */}
+     { characterList.map((character)=>{
+        return(
+            <p onClick={()=> onCharacterClick(character.id)} key={character.name}>{character.name}</p>
+            
+        )
+     })
+
+     }
+    
     </div>
 
   </div>
@@ -54,3 +75,5 @@ useEffect(()=>{
 };
 
 /*export default Navbar; */
+
+
