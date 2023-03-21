@@ -38,7 +38,7 @@ export const Navbar = () => {
               <i className="fas fa-search"></i>
             </span>
           </form>
-        </div>
+        </div> 
       </nav>
       <div className="container-fluid">
         <div className="row">
@@ -48,7 +48,7 @@ export const Navbar = () => {
             <Cards />
           </div>
           <div className="col-8" >
-            <h1>CONTENIDO DE PERSONAJES </h1>
+            <h1 className="text-center ubuntu my-4">Rick & Morty Wiki<span className="text-primary">Contenido de Personajes </span></h1>
             <List characterList={characterList} />
           </div>
         </div>
