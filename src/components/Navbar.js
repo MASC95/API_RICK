@@ -4,9 +4,22 @@ import { Cards } from "./CARDS/Cards";
 import { endpoints } from "./ENDPOINTS/endpoints";
 import { List } from "./CARDS/List";
 
-export const Navbar = () => {
+//let api = `https://rickandmortyapi.com/api/character/?name`;
+
+export const Navbar = () => { 
   const [characterList, setCharacterList] = useState([]);
   // const [characterIdsName,setCharacterIdsName ] = useState()
+  let [search,setSearch] = useState("Smith");
+  const onformsubmit = async (event) =>{
+    event.preventDefault();
+    const newApi =  `https://rickandmortyapi.com/api/character/?name=${search}` 
+     const response = await axios.get(newApi);
+     console.log(response.data.results);
+     
+     setCharacterList(response.data.results);
+    
+  }
+  
   useEffect(() => {
     const fetch = async () => {
       try {
@@ -18,13 +31,18 @@ export const Navbar = () => {
       }
     };
     fetch();
+    
   }, []);
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
         <div className="container-fluid">
-          <form className="d-flex input-group w-auto">
-            <input
+          <form className="d-flex input-group w-auto" onSubmit={onformsubmit}>
+            
+            <input 
+              onChange={e=>{
+                setSearch(e.target.value);
+              }}
               type="search"
               className="form-control rounded"
               placeholder="Search"
@@ -35,7 +53,7 @@ export const Navbar = () => {
               className="input-group-text text-white border-0"
               id="search-addon"
             >
-              <i className="fas fa-search"></i>
+              <input className="fas fa-search mx-4" type={"submit"} value="buscar..."/>
             </span>
           </form>
         </div> 
@@ -48,11 +66,13 @@ export const Navbar = () => {
             <Cards />
           </div>
           <div className="col-8" >
-            <h1 className="text-center ubuntu my-4">Rick & Morty Wiki<span className="text-primary">Contenido de Personajes </span></h1>
+            <h1 className="text-center ubuntu my-4">Rick & Morty Wiki<span className="text-primary"> Characters Ranked </span></h1>
             <List characterList={characterList} />
           </div>
         </div>
       </div>
     </div>
+    
+    
   );
 };

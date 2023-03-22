@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { endpoints } from "../ENDPOINTS/endpoints";
-  import styles from './list.css'
+import styles from './list.css'
 
 export const List = ({ characterList }) => {
   const [characterIdsName, setCharacterIdsName] = useState();
-  const [characterLists, setCharacterLists] = useState([]);
+  //const [characterLists] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetch = async () => {
       try {
         const characters = await axios.get(endpoints.getCharacter);
@@ -18,7 +18,7 @@ export const List = ({ characterList }) => {
       }
     };
     fetch();
-  }, []);
+  }, []);*/
   const onCharacterClick = (characterId) => {
     /*console.log(characterId)*/
     setCharacterIdsName(characterId);
@@ -29,7 +29,7 @@ export const List = ({ characterList }) => {
                 flexWrap:'wrap',
                 justifyContent:'center'}} className='ListCharacter'>
                   
-      {characterLists.map((character) => {
+      {characterList.map((character) => {
         return (
           <div className="card m-4 bg-info " style={{ width: "12rem" }}>
             <img
